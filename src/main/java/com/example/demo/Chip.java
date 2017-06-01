@@ -3,7 +3,7 @@ package com.example.demo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Chip {
+public class Chip implements IHardware {
 
 	private String status;
 	private Encrypt encryptor;
