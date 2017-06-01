@@ -11,6 +11,8 @@ public class ConfigFactory {
 				return new PGP64Encryptor();
 			case PGP128:
 				return new PGP128Encryptor();
+			case NO_ENCRYPTION:
+				return new NOEncryptor();
 			default:
 				return null;
 		}
