@@ -20,4 +20,8 @@ public class ConfigFactory {
 		
 	}
 
+	public Transmit getTransmittor(TransmitType tcpip) {
+		return new TCPIP();
+	}
+
 }
