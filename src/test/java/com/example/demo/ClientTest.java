@@ -15,10 +15,13 @@ public class ClientTest {
 	
 	@Autowired
 	private Chip chip;
+	
+	@Autowired
+	private ConfigFactory config;
 
 	@Test
 	public void getChipStatusAndEncryptWithPGP64AndSendViaTCPIP() throws Exception {
-		Encrypt encryptor = new PGP64Encryptor();
+		Encrypt encryptor = config.getEncryptor(EncryptorType.PGP64);
 		TCPIP transmittor = new TCPIP();
 		chip.setEncryptor(encryptor);
 		chip.setTransmittor(transmittor);
