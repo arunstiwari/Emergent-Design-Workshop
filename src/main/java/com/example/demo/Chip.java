@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class Chip {
 
 	private String status;
-	private PGP64Encryptor encryptor;
+	private Encrypt encryptor;
 	private TCPIP transmittor;
 
 	public String getAndSendStatus() {
@@ -23,7 +23,7 @@ public class Chip {
 		this.status = encryptor.encrypt(status);
 	}
 	
-	public void setEncryptor(PGP64Encryptor encryptor) {
+	public void setEncryptor(Encrypt encryptor) {
 		this.encryptor = encryptor;
 	}
 	

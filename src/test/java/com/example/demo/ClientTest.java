@@ -18,7 +18,7 @@ public class ClientTest {
 
 	@Test
 	public void getChipStatusAndEncryptWithPGP64AndSendViaTCPIP() throws Exception {
-		PGP64Encryptor encryptor = new PGP64Encryptor();
+		Encrypt encryptor = new PGP64Encryptor();
 		TCPIP transmittor = new TCPIP();
 		chip.setEncryptor(encryptor);
 		chip.setTransmittor(transmittor);
