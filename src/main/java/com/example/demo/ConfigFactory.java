@@ -20,8 +20,16 @@ public class ConfigFactory {
 		
 	}
 
-	public Transmit getTransmittor(TransmitType tcpip) {
-		return new TCPIP();
+	public Transmit getTransmittor(TransmitType type) {
+		switch(type){
+			case TCPIP:
+				return new TCPIP();
+			case EMAIL:
+				return new Email();
+			default:
+				return null;
+		}
+		
 	}
 
 }

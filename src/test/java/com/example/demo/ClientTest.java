@@ -48,5 +48,15 @@ public class ClientTest {
 		String status = chip.getAndSendStatus();
 		assertEquals("No Encryption",status);
 	}
+	
+	@Test
+	public void getChipStatusAndEncryptWithPGP64AndSendViaEmail() throws Exception {
+		Encrypt encryptor = config.getEncryptor(EncryptorType.PGP64);
+		Transmit transmittor = config.getTransmittor(TransmitType.EMAIL);
+		chip.setEncryptor(encryptor);
+		chip.setTransmittor(transmittor);
+		String status = chip.getAndSendStatus();
+		assertEquals("PGP64 Encryption",status);
+	}
 
 }
