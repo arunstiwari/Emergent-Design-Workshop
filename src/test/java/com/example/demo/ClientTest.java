@@ -28,5 +28,15 @@ public class ClientTest {
 		String status = chip.getAndSendStatus();
 		assertEquals("PGP64 Encryption",status);
 	}
+	
+	@Test
+	public void getChipStatusAndEncryptWithPGP128AndSendViaTCPIP() throws Exception {
+		Encrypt encryptor = config.getEncryptor(EncryptorType.PGP128);
+		TCPIP transmittor = new TCPIP();
+		chip.setEncryptor(encryptor);
+		chip.setTransmittor(transmittor);
+		String status = chip.getAndSendStatus();
+		assertEquals("PGP128 Encryption",status);
+	}
 
 }

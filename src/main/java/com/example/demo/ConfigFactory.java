@@ -6,7 +6,16 @@ import org.springframework.stereotype.Component;
 public class ConfigFactory {
 
 	public Encrypt getEncryptor(EncryptorType type) {
-		return new PGP64Encryptor();
+		switch(type){
+			case PGP64:
+				return new PGP64Encryptor();
+			case PGP128:
+				return new PGP128Encryptor();
+			default:
+				return null;
+		}
+		
+		
 	}
 
 }
