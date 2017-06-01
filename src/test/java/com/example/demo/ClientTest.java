@@ -22,7 +22,7 @@ public class ClientTest {
 	@Test
 	public void getChipStatusAndEncryptWithPGP64AndSendViaTCPIP() throws Exception {
 		Encrypt encryptor = config.getEncryptor(EncryptorType.PGP64);
-		TCPIP transmittor = new TCPIP();
+		Transmit transmittor = new TCPIP();
 		chip.setEncryptor(encryptor);
 		chip.setTransmittor(transmittor);
 		String status = chip.getAndSendStatus();
@@ -32,7 +32,7 @@ public class ClientTest {
 	@Test
 	public void getChipStatusAndEncryptWithPGP128AndSendViaTCPIP() throws Exception {
 		Encrypt encryptor = config.getEncryptor(EncryptorType.PGP128);
-		TCPIP transmittor = new TCPIP();
+		Transmit transmittor = new TCPIP();
 		chip.setEncryptor(encryptor);
 		chip.setTransmittor(transmittor);
 		String status = chip.getAndSendStatus();
@@ -42,7 +42,7 @@ public class ClientTest {
 	@Test
 	public void getChipStatusAndEncryptWithNoEncryptionAndSendViaTCPIP() throws Exception {
 		Encrypt encryptor = config.getEncryptor(EncryptorType.NO_ENCRYPTION);
-		TCPIP transmittor = new TCPIP();
+		Transmit transmittor = new TCPIP();
 		chip.setEncryptor(encryptor);
 		chip.setTransmittor(transmittor);
 		String status = chip.getAndSendStatus();

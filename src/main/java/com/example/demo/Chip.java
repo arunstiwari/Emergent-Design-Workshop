@@ -7,7 +7,7 @@ public class Chip {
 
 	private String status;
 	private Encrypt encryptor;
-	private TCPIP transmittor;
+	private Transmit transmittor;
 
 	public String getAndSendStatus() {
 		encrypt();
@@ -27,7 +27,7 @@ public class Chip {
 		this.encryptor = encryptor;
 	}
 	
-	public void setTransmittor(TCPIP transmittor) {
+	public void setTransmittor(Transmit transmittor) {
 		this.transmittor = transmittor;
 	}
 
