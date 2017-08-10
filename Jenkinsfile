@@ -19,6 +19,10 @@ pipeline{
 				sh 'mvn checkstyle:checkstyle'
 			}
 		}
-		junit allowEmptyResults: true, testResults: './target/test-reports/*.xml'
+		stage('Reports-Junit') {
+			steps {
+				junit allowEmptyResults: true, testResults: './target/test-reports/*.xml'
+			}
+		}
 	}
 }
