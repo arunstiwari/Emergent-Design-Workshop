@@ -8,7 +8,7 @@ pipeline{
 		}
 		stage('Build') {
 			steps {
-				mvn -DskipTests=true package
+				mvn package
 			}
 		}
 		stage('Checkstyle') {
