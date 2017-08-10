@@ -1,13 +1,19 @@
 pipeline{
 	agent any
 	stages{
+		stage('Test') {
+			steps {
+				mvn clean test
+			}
+		}
 		stage('Build') {
 			steps {
-				sh 'echo "Hello World"'
-				sh '''
-				  echo "Multiline shell steps"
-				  ls -lah
-				  '''
+				mvn -DskipTests=true package
+			}
+		}
+		stage('Checkstyle') {
+			steps {
+				mvn checkstyle:checkstyle
 			}
 		}
 	}
