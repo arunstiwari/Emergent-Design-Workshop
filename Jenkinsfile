@@ -19,5 +19,6 @@ pipeline{
 				sh 'mvn checkstyle:checkstyle'
 			}
 		}
+		junit allowEmptyResults: true, testResults: './target/test-reports/*.xml'
 	}
 }
