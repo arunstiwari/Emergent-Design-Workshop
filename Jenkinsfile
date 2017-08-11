@@ -23,6 +23,10 @@ pipeline{
 			steps {
 				junit allowEmptyResults: true, testResults: './target/surefire-reports/*.xml'
 			}
+			steps{
+				checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'target/checkstyle-result.xml', unHealthy: ''
+			}
 		}
+		
 	}
 }
