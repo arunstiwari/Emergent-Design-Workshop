@@ -1,8 +1,10 @@
 pipeline{
-	agent any
-	tools {
-		maven 'maven-3.2.9'
-	}
+	agent agent {
+        docker {
+            label 'docker'
+            image 'maven:3.5.0-jdk-8'
+        }
+    }
 	stages{
 		stage('Test') {
 			steps {
