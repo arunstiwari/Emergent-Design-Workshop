@@ -41,6 +41,12 @@ pipeline{
 				step( [ $class: 'JacocoPublisher' ] )
 			}
 		}
+		stage('SonarQube analysis') {
+    			def scannerHome = tool 'SonarQube Scanner 3.0.3.778';
+			withSonarQubeEnv('sonarqube') {
+      		sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
 		
 	}
 }
