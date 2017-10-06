@@ -42,9 +42,9 @@ pipeline{
 			}
 		}
 		stage('SonarQube analysis') {
-    			def scannerHome = tool 'SonarQube Scanner 3.0.3.778';
-			withSonarQubeEnv('sonarqube') {
-      		sh "${scannerHome}/bin/sonar-scanner"
+			steps{
+			sh 'mvn -Dsonar.host.url=http://52.31.36.145:9000/ -Dsonar.login=36388ea54758e7cc7703cc8134f779afe1a0118c org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar'
+  		}
     }
   }
 		

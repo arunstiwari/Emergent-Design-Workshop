@@ -22,6 +22,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<sonar.host.url>http://52.31.36.145:9000/</sonar.host.url>
+		<sonar.projectKey>emrgnt:Master</sonar.projectKey>
+		<sonar.projectName>Emergent</sonar.projectName>
+		<sonar.sources>src/main/java</sonar.sources>
+		<!-- <sonar.analysis.mode>preview</sonar.analysis.mode> -->
 	</properties>
 
 	<dependencies>
@@ -44,6 +49,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.3.0.603</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -140,6 +151,11 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.3.0.603</version>
 			</plugin>
 		</plugins>
 	</build>
