@@ -38,7 +38,7 @@ pipeline{
 		
 		stage('CodeCoverage-Reports') {
 			steps{
-				jacoco canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'target/site/jacoco/jacoco.xml', unHealthy: ''
+				step( [ $class: 'JacocoPublisher' ] )
 			}
 		}
 		
