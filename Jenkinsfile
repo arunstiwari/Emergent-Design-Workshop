@@ -20,6 +20,11 @@ pipeline{
 				sh 'mvn checkstyle:checkstyle'
 			}
 		}
+		stage('Jacoco') {
+			steps {
+				sh 'mvn jacoco:report'
+			}
+		}
 		stage('Reports-Junit') {
 			steps {
 				junit allowEmptyResults: true, testResults: './target/surefire-reports/*.xml'
@@ -28,6 +33,12 @@ pipeline{
 		stage('Checkstyle-Reports') {
 			steps{
 				checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'target/checkstyle-result.xml', unHealthy: ''
+			}
+		}
+		
+		stage('CodeCoverage-Reports') {
+			steps{
+				jacoco canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'target/site/jacoco/jacoco.xml', unHealthy: ''
 			}
 		}
 		
