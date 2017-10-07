@@ -45,18 +45,6 @@ pipeline{
 			steps{
 			sh 'mvn -Dsonar.host.url=http://52.31.36.145:9000/ -Dsonar.login=36388ea54758e7cc7703cc8134f779afe1a0118c org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar'
   		}
-		stage ('Parallel Demo') {
-	parallel 'static': {
-	 sh "echo shell scripts to run static"
-	 },
-	 'unit' : {
-	 	sh "echo shell scripts to run unit"
- 	},
- 	'integration' : {
-	 	sh "echo shell scripts to run integration"
- 	}
-	 
-}
     }
   }
 }
