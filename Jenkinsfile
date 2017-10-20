@@ -1,23 +1,16 @@
 pipeline{
-	 agent {
-        docker {
-            label 'QA'
-            image 'maven:3.5.0-jdk-8'
-            args '-v $HOME/.m2:/root/.m2'
+	agent {
+        node {
+            label 'master'
         }
     }
 	stages{
-		stage('Checkout'){
-			steps {
-				git url: "https://github.com/arunstiwari/Emergent-Design-Workshop.git"
-			}
-		}
-		stage('UnitTest') {
+		stage('Test') {
 			steps {
 				sh 'mvn clean test'
 			}
 		}
-		stage('Package') {
+		stage('Build') {
 			steps {
 				sh 'mvn package'
 			}
@@ -25,6 +18,11 @@ pipeline{
 		stage('Checkstyle') {
 			steps {
 				sh 'mvn checkstyle:checkstyle'
+			}
+		}
+		stage('Jacoco') {
+			steps {
+				sh 'mvn jacoco:report'
 			}
 		}
 		stage('Reports-Junit') {
@@ -38,5 +36,15 @@ pipeline{
 			}
 		}
 		
-	}
+		stage('CodeCoverage-Reports') {
+			steps{
+				step( [ $class: 'JacocoPublisher' ] )
+			}
+		}
+		stage('SonarQube analysis') {
+			steps{
+			sh 'mvn -Dsonar.host.url=http://52.31.36.145:9000/ -Dsonar.login=36388ea54758e7cc7703cc8134f779afe1a0118c org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar'
+  		}
+    }
+  }
 }
