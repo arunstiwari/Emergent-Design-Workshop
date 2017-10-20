@@ -3,15 +3,21 @@ pipeline{
         docker {
             label 'QA'
             image 'maven:3.5.0-jdk-8'
+            args '-v $HOME/.m2:/root/.m2'
         }
     }
 	stages{
-		stage('Test') {
+		stage('Checkout'){
+			steps {
+				git url: "https://github.com/arunstiwari/Emergent-Design-Workshop.git"
+			}
+		}
+		stage('UnitTest') {
 			steps {
 				sh 'mvn clean test'
 			}
 		}
-		stage('Build') {
+		stage('Package') {
 			steps {
 				sh 'mvn package'
 			}
