@@ -3,7 +3,6 @@ pipeline{
         docker {
             label 'QA'
             image 'maven:3.5.0-jdk-8'
-            args '-v $HOME/.m2:/root/.m2'
         }
     }
 	stages{
