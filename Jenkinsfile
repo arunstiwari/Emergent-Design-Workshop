@@ -60,7 +60,7 @@ pipeline{
 		
 		stage('MutationCoverage') {
 			steps {
-				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/pit-reports/**/', reportFiles: 'index.html', reportName: 'Mutation Reports', reportTitles: 'MutationReport'])
+				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/pit-reports/**/*', reportFiles: 'index.html', reportName: 'Mutation Reports', reportTitles: 'MutationReport'])
 			}
 		}
 	  }
