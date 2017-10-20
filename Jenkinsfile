@@ -41,6 +41,16 @@ pipeline{
 				junit allowEmptyResults: true, testResults: './target/surefire-reports/*.xml'
 			}
 		}
+		stage('MutationTest'){
+			steps {
+				sh 'mvn org.pitest:pitest-maven:mutationCoverage'
+			}
+			post {
+				success {
+					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/pit-reports/**/', reportFiles: 'index.html', reportName: 'Mutation Reports', reportTitles: 'MutationReport'])
+				}
+			}
+		}
 		stage('Checkstyle-Reports') {
 			steps{
 				checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'target/checkstyle-result.xml', unHealthy: ''
