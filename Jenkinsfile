@@ -45,11 +45,6 @@ pipeline{
 			steps {
 				sh 'mvn org.pitest:pitest-maven:mutationCoverage'
 			}
-			post {
-				success {
-					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/pit-reports/**/', reportFiles: 'index.html', reportName: 'Mutation Reports', reportTitles: 'MutationReport'])
-				}
-			}
 		}
 		stage('Checkstyle-Reports') {
 			steps{
@@ -60,6 +55,12 @@ pipeline{
 		stage('CodeCoverage-Reports') {
 			steps{
 				step( [ $class: 'JacocoPublisher' ] )
+			}
+		}
+		
+		stage('MutationCoverage') {
+			steps {
+				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/pit-reports/**/', reportFiles: 'index.html', reportName: 'Mutation Reports', reportTitles: 'MutationReport'])
 			}
 		}
 	  }
