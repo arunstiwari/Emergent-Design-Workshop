@@ -1,18 +1,30 @@
 pipeline{
 	agent {
-        node {
-            label 'master'
+        docker {
+            label 'QA'
+            image 'maven:3.5.0-jdk-8'
+            args '-v $HOME/.m2:/root/.m2'
         }
     }
 	stages{
-		stage('Test') {
+		stage('UnitTest') {
 			steps {
 				sh 'mvn clean test'
+			}
+			post{
+				success{
+					junit allowEmptyResults: true, testResults: './target/surefire-reports/*.xml'
+				}
 			}
 		}
 		stage('Build') {
 			steps {
 				sh 'mvn package'
+			}
+			post {
+				success {
+					archiveArtifacts(artifacts: '**/target/*.jar', allowEmptyArchive: true)
+				}
 			}
 		}
 		stage('Checkstyle') {
@@ -41,10 +53,5 @@ pipeline{
 				step( [ $class: 'JacocoPublisher' ] )
 			}
 		}
-		stage('SonarQube analysis') {
-			steps{
-			sh 'mvn -Dsonar.host.url=http://52.31.36.145:9000/ -Dsonar.login=36388ea54758e7cc7703cc8134f779afe1a0118c org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar'
-  		}
-    }
-  }
+	  }
 }
